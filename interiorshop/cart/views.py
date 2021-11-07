@@ -4,10 +4,11 @@ from django.conf import settings
 from django.contrib import messages
 from django.shortcuts import render, redirect
 
+
 from .cart import Cart
 from .forms import CheckoutForm
 
-from order.utilities import checkout
+from order.utilities import checkout, notify_customer, notify_vendor
 
 def cart_detail(request):
     cart = Cart(request)
@@ -39,6 +40,9 @@ def cart_detail(request):
                 order = checkout(request, first_name, last_name, email, address, zipcode, place, phone, cart.get_total_cost())
 
                 cart.clear()
+
+                notify_customer(order)
+                notify_vendor(order)
 
 
                 return redirect('success')

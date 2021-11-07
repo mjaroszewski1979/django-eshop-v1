@@ -38,6 +38,13 @@ LOGOUT_REDIRECT_URL = 'frontpage'
 SEESION_COOKIE_AGE = 86400
 CART_SESSION_ID = 'cart'
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'mjaropraca@gmail.com'
+EMAIL_HOST_PASSWORD = 'howvqzitqpoeymiq'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_EMAIL_FROM = 'interiorshop'
+
 
 # Application definition
 
