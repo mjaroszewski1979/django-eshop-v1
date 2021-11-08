@@ -34,11 +34,10 @@ def product(request, category_slug, product_slug):
     else:
         form = AddToCartForm()
 
-    all_products = Product.objects.all()
-    similar_products = []
-    for item in all_products:
-        if item != product:
-            similar_products.append(item)
+    similar_products = list(product.category.products.exclude(id=product.id))
+
+    if len(similar_products) >= 4:
+        similar_products = random.sample(similar_products, 4)
 
     return render(request, 'product/product.html', {'form': form, 'product': product, 'similar_products': similar_products})
 
